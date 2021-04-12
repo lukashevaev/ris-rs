@@ -10,7 +10,7 @@
                select="'Санкт-Петербургский политехнический университет Петра Великого'" />
 
     <xsl:template match='record'>
-        <file xmlns="http://bibtexml.sf.net/">
+        <file>
             <xsl:call-template name="personalCreatorName" />
             <xsl:value-of select="subfield[@id='p']"/>
             <entry id="value" >

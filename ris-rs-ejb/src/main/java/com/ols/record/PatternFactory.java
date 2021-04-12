@@ -33,9 +33,6 @@ public class PatternFactory {
 
     public static final Pattern chapterPattern = Pattern.compile("^(\\s*(часть|chapter|chap|ch|ч)\\.?\\s*[нn№#]?\\d*)");
 
-    public static final Pattern digitPattern = Pattern.compile("\\d*");
-
-
 
     /**
      * This constructor has one parameter

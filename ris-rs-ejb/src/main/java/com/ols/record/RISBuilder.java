@@ -7,10 +7,10 @@ public class RISBuilder {
     private final Map<String, String> fields;
     private final String recordType;
 
-    public RISBuilder(Map<String, String> patterns){
-        fields = patterns;
-        TypeDefiner definer = new TypeDefiner(fields);
-        recordType = definer.getRecordType();
+    public RISBuilder(Map<String, String> fields){
+        this.fields = fields;
+        TypeDefiner typeDefiner = new TypeDefiner(fields);
+        this.recordType = typeDefiner.getRecordType();
         refactorFields();
     }
 
@@ -25,7 +25,7 @@ public class RISBuilder {
     }
 
     private void refactorFields(){
-        //these fields are not needed in bibtex(recordType will be on the top of bibtex-record, techreport is only a flag)
+
         fields.remove("TY");
         fields.remove("AN");
 
@@ -33,7 +33,7 @@ public class RISBuilder {
         //check that volume matches a specific pattern (if exists)
         String volume = isExist("VL") ? fields.get("VL").toLowerCase() : "";
 
-        if (!PatternFactory.volumePattern.matcher(volume.toLowerCase()).find()) fields.remove("VL");
+        if (!PatternFactory.volumePattern.matcher(volume).find()) fields.remove("VL");
         else fields.put("VL", getDigits(volume));
         //check that number of journal matches a specific pattern (if exists)
         if (isExist("M1")){
@@ -61,7 +61,7 @@ public class RISBuilder {
         return fields.get(fieldName) != null;
     }
 
-    public String build(){
+    public String buildRIS(){
         StringBuilder risText = new StringBuilder();
         risText.append("TY-")
                 .append(recordType)
@@ -71,7 +71,7 @@ public class RISBuilder {
             String parameter = entry.getKey();
             if (field != null) risText.append(parameter)
                     .append("-")
-                    .append(field.trim())
+                    .append(field)
                     .append("\n");
         }
         //deleting "," from last body-line and adding a closing "}"
