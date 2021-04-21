@@ -48,9 +48,10 @@ public class RISRecordSchema implements BeanSchema {
 
     @Override
     public byte[] getTransformedRecord(byte[] record, String encoding) throws Exception {
-        Document src = ruslanRecordSchema.toDocument(record, encoding);
+        /*Document src = ruslanRecordSchema.toDocument(record, encoding);
         RISBuilder builder = getBuilder(src);
-        return builder.buildRIS().getBytes(encoding);
+        return builder.buildRIS().getBytes(encoding);*/
+        return null;
 
     }
 
@@ -59,7 +60,7 @@ public class RISRecordSchema implements BeanSchema {
         return "text/plain";
     }
 
-    private RISBuilder getBuilder(Document src) throws TransformerException {
+    RISBuilder getBuilder(Document src) throws TransformerException {
         Transformer transformer = templates.newTransformer();
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
         DOMResult result = new DOMResult();

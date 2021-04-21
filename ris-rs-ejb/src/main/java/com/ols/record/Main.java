@@ -10,18 +10,22 @@ import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.regex.Pattern;
 
 
 public class Main {
     public static void main(String[] args) throws TransformerException, IOException, SAXException, ParserConfigurationException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, NamingException {
-        //preparing rusmarc.xml for reading
+        RISRecordSchema recordSchema = new RISRecordSchema();
+        recordSchema.init();
         InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("RUSMARC.xml");
-        //creating document for transformed(by xsl) rusmarc.xml
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
-        Document document = docBuilder.parse(inputStream);
-        RISRecordSchema risRecordSchema = new RISRecordSchema();
-        RISRecordSchema.class.getDeclaredMethod("init", new Class[]{}).invoke(risRecordSchema);
-        System.out.println(risRecordSchema.transformSchema(document));
+        Document document = null;
+        if (inputStream != null) document = docBuilder.parse(inputStream);
+        RISBuilder builder = recordSchema.getBuilder(document);
+        System.out.println(builder.buildRIS());
     }
+
 }

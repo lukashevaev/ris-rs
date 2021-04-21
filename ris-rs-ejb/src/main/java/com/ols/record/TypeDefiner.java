@@ -28,12 +28,12 @@ public class TypeDefiner {
             }
         }
 
-        //check books-group
+        /*//check books-group
         if (recordType.equals("BOOK")){
             if (fields.get("VL") != null & PatternFactory.chapterPattern.matcher(fields.get("VL").toLowerCase()).find()) {
                 recordType = "CHAP";
             }
-        }
+        }*/
 
         if(!isChanged) recordType = "HELLO";
     }
