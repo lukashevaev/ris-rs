@@ -1,8 +1,6 @@
-package com.ols.record;
+package com.ols.ruslan.neo;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -15,7 +13,7 @@ public class PatternFactory {
     private PatternFactory(){
         patternsForType.put(RecordType.BOOK,
 
-                        Pattern.compile("book")
+                        Pattern.compile("book"));
 
         patternsForType.put(RecordType.CONF,
 
@@ -115,7 +113,7 @@ public class PatternFactory {
 
         patternsForType.put(RecordType.EJOUR,
 
-                        Pattern.compile("Electronic Article");
+                        Pattern.compile("Electronic Article"));
 
         patternsForType.put(RecordType.ELEC,
 
@@ -147,120 +145,99 @@ public class PatternFactory {
 
         patternsForType.put(RecordType.HEAR,
 
-                        Pattern.compile("hearing"),
-                        Pattern.compile("слушание")
+                        Pattern.compile("hearing|слушание"));
 
         patternsForType.put(RecordType.ICOMM,
 
-                        Pattern.compile("Internet Communication")
+                        Pattern.compile("Internet Communication"));
 
         patternsForType.put(RecordType.INPR,
 
-                        Pattern.compile("In Press")
+                        Pattern.compile("In Press"));
 
         patternsForType.put(RecordType.JFULL,
 
-                        Pattern.compile("Journal (full)")
+                        Pattern.compile("Journal (full)"));
 
         patternsForType.put(RecordType.LEGAL,
 
-                        Pattern.compile("Legal Rule or Regulation")
+                        Pattern.compile("Legal Rule or Regulation"));
 
         patternsForType.put(RecordType.MANSCPT,
 
-                        Pattern.compile("Manuscript"),
-                        Pattern.compile("манускрипт")
+                        Pattern.compile("Manuscript|манускрипт"));
 
         patternsForType.put(RecordType.MAP,
 
-                        Pattern.compile("Map"),
-                        Pattern.compile("карта")
+                        Pattern.compile("Map|карта"));
 
         patternsForType.put(RecordType.MGZN,
 
-                        Pattern.compile("Magazine article"),
-                        Pattern.compile("статья"),
-                        Pattern.compile("article"),
-                        Pattern.compile("magazine")
+                        Pattern.compile("Magazine article|статья|magazine"));
 
         patternsForType.put(RecordType.MPCT,
 
-                        Pattern.compile("Motion picture"),
-                        Pattern.compile("кинофильм")
+                        Pattern.compile("Motion picture|кинофильм"));
 
         patternsForType.put(RecordType.MULTI,
 
-                        Pattern.compile("Online Multimedia")
+                        Pattern.compile("Online Multimedia"));
 
         patternsForType.put(RecordType.MUSIC,
 
-                        Pattern.compile("Music score")
+                        Pattern.compile("Music score"));
 
         patternsForType.put(RecordType.NEWS,
 
-                        Pattern.compile("Newspaper"),
-                        Pattern.compile("газета")
+                        Pattern.compile("Newspaper|газета"));
 
         patternsForType.put(RecordType.PAMP,
 
-                        Pattern.compile("Pamphlet"),
-                        Pattern.compile("брошюра")
+                        Pattern.compile("Pamphlet|брошюра"));
 
         patternsForType.put(RecordType.PAT,
 
-                        Pattern.compile("Patent"),
-                        Pattern.compile("патент")
+                        Pattern.compile("Patent|патент"));
 
         patternsForType.put(RecordType.PCOMM,
 
-                        Pattern.compile("Personal communication")
+                        Pattern.compile("Personal communication"));
 
         patternsForType.put(RecordType.RPRT,
 
-                        Pattern.compile("Report"),
-                        Pattern.compile("отчет")
+                        Pattern.compile("Report|отчет"));
 
         patternsForType.put(RecordType.SER,
 
-                        Pattern.compile("Serial publication"),
-                        Pattern.compile("серийное издание")
+                        Pattern.compile("Serial publication|серийное издание"));
 
         patternsForType.put(RecordType.SLIDE,
 
-                        Pattern.compile("Slide"),
-                        Pattern.compile("слайд")
+                        Pattern.compile("Slide|слайд"));
 
         patternsForType.put(RecordType.SOUND,
 
-                        Pattern.compile("Sound recording"),
-                        Pattern.compile("звукозапись"),
-                        Pattern.compile("запись звука")
+                        Pattern.compile("Sound recording|звукозапись|запись звука"));
 
         patternsForType.put(RecordType.STAND,
 
-                        Pattern.compile("Standard"),
-                        Pattern.compile("стандарт")
+                        Pattern.compile("Standard|стандарт"));
 
         patternsForType.put(RecordType.STAT,
 
-                        Pattern.compile("Statute"),
-                        Pattern.compile("Statistics")
+                        Pattern.compile("Statute|Statistics"));
 
         patternsForType.put(RecordType.UNBILL,
 
-                        Pattern.compile("Unenacted Bill"),
-                        Pattern.compile("не принятый законопроект")
+                        Pattern.compile("Unenacted Bill|не принятый законопроект"));
 
         patternsForType.put(RecordType.UNPB,
 
-                        Pattern.compile("Unpublished work"),
-                        Pattern.compile("неопубликован")
+                        Pattern.compile("Unpublished work|неопубликован"));
 
         patternsForType.put(RecordType.VIDEO,
 
-                        Pattern.compile("Video recording"),
-                        Pattern.compile("запись видео")
-
+                        Pattern.compile("Video recording|запись видео"));
     }
 
     private static class PatternFactoryHolder {
