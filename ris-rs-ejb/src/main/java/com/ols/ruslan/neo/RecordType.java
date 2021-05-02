@@ -1,5 +1,9 @@
 package com.ols.ruslan.neo;
 
+/**
+ *  Перечисление типов
+ */
+
 public enum RecordType {
     BOOK,
     CONF,

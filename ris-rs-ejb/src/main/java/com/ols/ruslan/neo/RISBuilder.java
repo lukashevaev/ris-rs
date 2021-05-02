@@ -2,6 +2,10 @@ package com.ols.ruslan.neo;
 
 import java.util.*;
 
+/**
+ * Данный класс используется для того,
+ * чтобы собрать библиографическую запись в формат RIS
+ */
 public class RISBuilder {
 
     private final Map<String, String> fields;
@@ -13,7 +17,7 @@ public class RISBuilder {
         this.recordType = typeDefiner.getRecordType();
         refactorFields();
     }
-
+    // Метод для выделения цифр из поля
     public String getDigits(String field) {
         StringBuilder result = new StringBuilder();
         Set<Character> digits = new HashSet<>(Arrays.asList('0','1','2','3','4','5','6','7','8','9'));
@@ -24,41 +28,40 @@ public class RISBuilder {
 
     }
 
+    private boolean isExist(String fieldName){
+        return fields.get(fieldName) != null;
+    }
+
+    // Изменение полей
     private void refactorFields(){
 
         fields.remove("TY");
         fields.remove("AN");
 
 
-        //check that volume matches a specific pattern (if exists)
+        // Если том не подходит под паттерн, то он удаляется
         String volume = isExist("VL") ? fields.get("VL").toLowerCase() : "";
-
         if (!PatternFactory.volumePattern.matcher(volume).find()) fields.remove("VL");
         else fields.put("VL", getDigits(volume));
-        //check that number of journal matches a specific pattern (if exists)
+
+        // Если тип записи не статья, то удаляется номер журнала
         if (isExist("M1")){
             if (!recordType.equals("@article")) fields.remove("number");
         }
-
-
-
-
-        if (recordType.equals("@article") & fields.get("number") != null) {
+        // Если тип записи статья, но номер журнала не подходит под паттерн, то удаляется номер журнала.
+        // В противном случае удаляется номер тома (эти 2 поля по сути идентичны, поэтому одно из них надо удалить из статьи)
+        if (recordType.equals("@article") && fields.get("number") != null) {
             if (!PatternFactory.numberPattern.matcher(fields.get("number").toLowerCase()).find()) fields.remove("M1");
             else fields.remove("VL");
         }
-        //pages
+        // Если есть поле Страницы, удовлетворяющее паттерну, то выделяем из него цифры
         String pages = isExist("EP") ? fields.get("EP").toLowerCase() : "";
         if (!PatternFactory.pagePattern.matcher(pages).find()) fields.remove("EP");
         else fields.put("EP", getDigits(fields.get("EP")));
 
-        //edition
+        // Выделяем цифры из поля Издание
         if (isExist("ET")) fields.put("ET", getDigits(fields.get("ET")));
 
-    }
-
-    private boolean isExist(String fieldName){
-        return fields.get(fieldName) != null;
     }
 
     public String buildRIS(){
@@ -74,7 +77,7 @@ public class RISBuilder {
                     .append(field)
                     .append("\n");
         }
-        //deleting "," from last body-line and adding a closing "}"
+        // Добавление последнего обзательного тэга
         return risText.append("ER-").toString();
     }
 
