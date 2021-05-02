@@ -13,22 +13,28 @@ public class PatternFactory {
     private PatternFactory(){
         patternsForType.put(RecordType.BOOK,
 
-                        Pattern.compile("book"));
+                        Pattern.compile("энциклопедия|encyclopa[e]?dia|сборник|собрание|сочинения|работы|книга|book|" +
+                                "((в|in)\\s\\d+-?х?\\s(т|ч|vols)\\.?)$")); // Пример: сборник в 3 томах
 
         patternsForType.put(RecordType.CONF,
 
                         Pattern.compile("proceedings|" +
                                 "of\\s*(a|the)\\s*conference|" +
-                                "conference|" +
-                                "proceedings\\s*of"));
+                                "conference|proceedings\\s*of|" +
+                                "of\\s*(a|the).*\\s*colloquium|" +
+                                "of\\s*symposia|symposium|" +
+                                "of\\s*(a|the)\\s*congress"
+                        ));
 
         patternsForType.put(RecordType.JOUR,
 
-                        Pattern.compile("журнал|journal"));
+                        Pattern.compile("журнал|journal|статья|article"));
 
         patternsForType.put(RecordType.THES,
 
-                        Pattern.compile("дис.*канд|дис.*маг"));
+                        Pattern.compile("дис.*канд|дис.*маг|" +
+                                "выпускная квалификационная работа магистра|" +
+                                "(master(s)?)?\\s*thesis\\s*((of)?\\smaster)?"));
 
 
         patternsForType.put(RecordType.ABST,
