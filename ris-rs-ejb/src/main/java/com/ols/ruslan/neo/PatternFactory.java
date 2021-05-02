@@ -33,8 +33,10 @@ public class PatternFactory {
         patternsForType.put(RecordType.THES,
 
                         Pattern.compile("дис.*канд|дис.*маг|" +
-                                "выпускная квалификационная работа магистра|" +
-                                "(master(s)?)?\\s*thesis\\s*((of)?\\smaster)?"));
+                                "выпускная квалификационная работа магистра|выпускная квалификационная работа бакалавра|" +
+                                "(master(s)?)?\\s*thesis\\s*((of)?\\smaster)?"+
+                                "(bachelor(s)?)?\\s*thesis\\s*((of)?\\sbachelor)?"
+                        ));
 
 
         patternsForType.put(RecordType.ABST,
