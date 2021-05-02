@@ -41,31 +41,31 @@ public class PatternFactory {
 
         patternsForType.put(RecordType.ABST,
 
-                        Pattern.compile("abstract"));
+                        Pattern.compile("abstract|аннотация"));
 
         patternsForType.put(RecordType.ADVS,
 
-                        Pattern.compile("audiovisual material"));
+                        Pattern.compile("audiovisual material|аудиовизуальные материалы"));
 
         patternsForType.put(RecordType.AGGR,
 
-                        Pattern.compile("aggregated database"));
+                        Pattern.compile("aggregated database|агрегированная база данных"));
 
         patternsForType.put(RecordType.ANCIENT,
 
-                        Pattern.compile("Ancient Text"));
+                        Pattern.compile("Ancient Text|ancient"));
 
         patternsForType.put(RecordType.ART,
 
-                        Pattern.compile("Art Work"));
+                        Pattern.compile("Art Work|art"));
 
         patternsForType.put(RecordType.BILL,
 
-                        Pattern.compile("Bill|законопроект"));
+                        Pattern.compile("Bill|законопроект|билл"));
 
         patternsForType.put(RecordType.BLOG,
 
-                        Pattern.compile("Blog"));
+                        Pattern.compile("Blog|блог"));
 
         patternsForType.put(RecordType.CASE,
 
@@ -73,7 +73,7 @@ public class PatternFactory {
 
         patternsForType.put(RecordType.CHAP,
 
-                        Pattern.compile("Book chapter"));
+                        Pattern.compile("Book chapter|глава"));
 
         patternsForType.put(RecordType.CHART,
 
@@ -81,51 +81,51 @@ public class PatternFactory {
 
         patternsForType.put(RecordType.CLSWK,
 
-                        Pattern.compile("Classical Work"));
+                        Pattern.compile("Classical Work|классическая работа"));
 
         patternsForType.put(RecordType.COMP,
 
-                        Pattern.compile("Computer program|программа"));
+                        Pattern.compile("Computer program|программа|компьютерная программа"));
 
         patternsForType.put(RecordType.CPAPER,
 
-                        Pattern.compile("Conference paper"));
+                        Pattern.compile("Conference paper|документ конференции|материал конференции"));
 
         patternsForType.put(RecordType.CTLG,
 
-                        Pattern.compile("Catalog"));
+                        Pattern.compile("Catalog|каталог"));
 
         patternsForType.put(RecordType.DATA,
 
-                        Pattern.compile("Data file"));
+                        Pattern.compile("Data file|файл|файл данных"));
 
         patternsForType.put(RecordType.DBASE,
 
-                        Pattern.compile("Online Database"));
+                        Pattern.compile("Online Database|база данных|бд|онлайн база данных"));
 
         patternsForType.put(RecordType.DICT,
 
-                        Pattern.compile("Dictionary"));
+                        Pattern.compile("Dictionary|словарь"));
 
         patternsForType.put(RecordType.EBOOK,
 
-                        Pattern.compile("Electronic Book"));
+                        Pattern.compile("Electronic Book|электронная книга"));
 
         patternsForType.put(RecordType.ECHAP,
 
-                        Pattern.compile("Electronic Book Section"));
+                        Pattern.compile("Electronic Book Section|раздел электронной книги|раздел"));
 
         patternsForType.put(RecordType.EDBOOK,
 
-                        Pattern.compile("Edited Book"));
+                        Pattern.compile("Edited Book|отредактированная книга"));
 
         patternsForType.put(RecordType.EJOUR,
 
-                        Pattern.compile("Electronic Article"));
+                        Pattern.compile("Electronic Article|электронная статья"));
 
         patternsForType.put(RecordType.ELEC,
 
-                        Pattern.compile("Web Page"));
+                        Pattern.compile("Web Page|веб-страница"));
 
         patternsForType.put(RecordType.ENCYC,
 
@@ -141,11 +141,11 @@ public class PatternFactory {
 
         patternsForType.put(RecordType.GEN,
 
-                        Pattern.compile("Figure"));
+                        Pattern.compile("Figure|общий"));
 
         patternsForType.put(RecordType.GOVDOC,
 
-                        Pattern.compile("Government Document"));
+                        Pattern.compile("Government Document|правительственный документ"));
 
         patternsForType.put(RecordType.GRANT,
 
@@ -157,23 +157,23 @@ public class PatternFactory {
 
         patternsForType.put(RecordType.ICOMM,
 
-                        Pattern.compile("Internet Communication"));
+                        Pattern.compile("Internet Communication|интернет коммуникация"));
 
         patternsForType.put(RecordType.INPR,
 
-                        Pattern.compile("In Press"));
+                        Pattern.compile("In Press|в прессе"));
 
         patternsForType.put(RecordType.JFULL,
 
-                        Pattern.compile("Journal (full)"));
+                        Pattern.compile("Journal (full)|полный журнал|журнал полный| журнал (полный)"));
 
         patternsForType.put(RecordType.LEGAL,
 
-                        Pattern.compile("Legal Rule or Regulation"));
+                        Pattern.compile("Legal Rule or Regulation|правовые нормы|правила"));
 
         patternsForType.put(RecordType.MANSCPT,
 
-                        Pattern.compile("Manuscript|манускрипт"));
+                        Pattern.compile("Manuscript|манускрипт|рукопись"));
 
         patternsForType.put(RecordType.MAP,
 
@@ -181,19 +181,19 @@ public class PatternFactory {
 
         patternsForType.put(RecordType.MGZN,
 
-                        Pattern.compile("Magazine article|статья|magazine"));
+                        Pattern.compile("Magazine article|magazine|статья в журнале"));
 
         patternsForType.put(RecordType.MPCT,
 
-                        Pattern.compile("Motion picture|кинофильм"));
+                        Pattern.compile("Motion picture|кинофильм|фильм"));
 
         patternsForType.put(RecordType.MULTI,
 
-                        Pattern.compile("Online Multimedia"));
+                        Pattern.compile("Online Multimedia|мультфильм"));
 
         patternsForType.put(RecordType.MUSIC,
 
-                        Pattern.compile("Music score"));
+                        Pattern.compile("Music score|музыкальная партитура"));
 
         patternsForType.put(RecordType.NEWS,
 
@@ -209,7 +209,7 @@ public class PatternFactory {
 
         patternsForType.put(RecordType.PCOMM,
 
-                        Pattern.compile("Personal communication"));
+                        Pattern.compile("Personal communication|сообщение"));
 
         patternsForType.put(RecordType.RPRT,
 
@@ -217,7 +217,7 @@ public class PatternFactory {
 
         patternsForType.put(RecordType.SER,
 
-                        Pattern.compile("Serial publication|серийное издание"));
+                        Pattern.compile("Serial publication|серийное издание|серийная публикация"));
 
         patternsForType.put(RecordType.SLIDE,
 
@@ -225,7 +225,7 @@ public class PatternFactory {
 
         patternsForType.put(RecordType.SOUND,
 
-                        Pattern.compile("Sound recording|звукозапись|запись звука"));
+                        Pattern.compile("Sound recording|звукозапись|запись звука|звук"));
 
         patternsForType.put(RecordType.STAND,
 
@@ -233,19 +233,19 @@ public class PatternFactory {
 
         patternsForType.put(RecordType.STAT,
 
-                        Pattern.compile("Statute|Statistics"));
+                        Pattern.compile("Statute|Statistics|устав"));
 
         patternsForType.put(RecordType.UNBILL,
 
-                        Pattern.compile("Unenacted Bill|не принятый законопроект"));
+                        Pattern.compile("Unenacted Bill|не принятый законопроект|не принятый законопроект"));
 
         patternsForType.put(RecordType.UNPB,
 
-                        Pattern.compile("Unpublished work|неопубликован"));
+                        Pattern.compile("Unpublished work|неопубликован|неопубликованная"));
 
         patternsForType.put(RecordType.VIDEO,
 
-                        Pattern.compile("Video recording|запись видео"));
+                        Pattern.compile("Video recording|запись видео|видеозапись|видео запись"));
     }
 
     private static class PatternFactoryHolder {
