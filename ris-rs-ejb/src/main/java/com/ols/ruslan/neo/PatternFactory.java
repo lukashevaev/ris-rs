@@ -19,7 +19,6 @@ public class PatternFactory {
                                 "((в|in)\\s\\d+-?х?\\s(т|ч|vols)\\.?)$")); // Пример: сборник в 3 томах
 
         patternsForType.put(RecordType.CONF,
-
                         Pattern.compile("proceedings|" +
                                 "of\\s*(a|the)\\s*conference|" +
                                 "conference|proceedings\\s*of|" +
@@ -27,7 +26,6 @@ public class PatternFactory {
                                 "of\\s*symposia|symposium|" +
                                 "of\\s*(a|the)\\s*congress"
                         ));
-
         patternsForType.put(RecordType.JOUR,
 
                         Pattern.compile("журнал|journal|газета"));

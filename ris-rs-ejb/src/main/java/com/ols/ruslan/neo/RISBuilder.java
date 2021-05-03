@@ -19,13 +19,7 @@ public class RISBuilder {
     }
     // Метод для выделения цифр из поля
     public String getDigits(String field) {
-        StringBuilder result = new StringBuilder();
-        Set<Character> digits = new HashSet<>(Arrays.asList('0','1','2','3','4','5','6','7','8','9'));
-        for (int i = 0; i < field.length(); i++){
-            if (digits.contains(field.charAt(i))) result.append(field.charAt(i));
-        }
-        return result.toString();
-
+        return field.replaceAll("[^0-9]", "");
     }
 
     private boolean isExist(String fieldName){
