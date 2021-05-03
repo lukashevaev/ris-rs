@@ -1,34 +1,28 @@
-package com.ols.record;
+package com.ols.ruslan.neo;
 
-import com.ols.ruslan.neo.RISBuilder;
-import com.ols.ruslan.neo.XmlToRisTransformer;
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
-import javax.naming.NamingException;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        XmlToRisTransformer toBibtexTransformer = new XmlToRisTransformer();
-        toBibtexTransformer.startup();
+        /*XmlToRisTransformer transformer = new XmlToRisTransformer();
+        transformer.startup();
         InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("RUSMARC.xml");
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
         Document document = null;
         if (inputStream != null) document = docBuilder.parse(inputStream);
         byte[] bytes = getBytes(document);
-        System.out.println(Arrays.toString(toBibtexTransformer.transform(bytes, "UTF-8")));
+        System.out.println(Arrays.toString(transformer.transform(bytes, "UTF-8")));*/
     }
 
     public static byte[] getBytes(Document document) throws Exception {
