@@ -56,6 +56,10 @@ public class RISBuilder {
         // Выделяем цифры из поля Издание
         if (isExist("ET")) fields.put("ET", getDigits(fields.get("ET")));
 
+
+        // Удаление "and" в конце поля "author"
+        String author = fields.get("author");
+        if (author != null) fields.put("author", author.substring(0, author.length() - 4));
     }
 
     public String buildRIS(){
