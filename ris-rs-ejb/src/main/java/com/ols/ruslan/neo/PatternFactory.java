@@ -12,11 +12,11 @@ import java.util.regex.Pattern;
 public class PatternFactory {
     private static final Map<RecordType, Pattern> patternsForType = new HashMap<>();
 
-    private PatternFactory(){
+    PatternFactory(){
         patternsForType.put(RecordType.BOOK,
 
                         Pattern.compile("энциклопедия|encyclopa[e]?dia|сборник|собрание|сочинения|работы|книга|book|" +
-                                "((в|in)\\s\\d+-?х?\\s(т|ч|vols)\\.?)$")); // Пример: сборник в 3 томах
+                                "(в|in)\\s\\d+-?х?\\s(т|ч|vols)\\.?$")); // Пример: сборник в 3 томах
 
         patternsForType.put(RecordType.CONF,
                         Pattern.compile("proceedings|" +

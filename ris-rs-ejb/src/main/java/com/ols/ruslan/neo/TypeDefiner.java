@@ -1,22 +1,26 @@
 package com.ols.ruslan.neo;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
  * Данный класс используется для того, чтобы определить тип записи на основании паттернов
  */
 public class TypeDefiner {
-    private final Map<String, String> fields;
     private String recordType;
     private final Map<RecordType, Pattern> patternsForType;
+    private Set<String> recordTypes = new HashSet<>();
+    private final RISInstance instance;
 
-    public TypeDefiner(Map<String, String> fields){
-        PatternFactory patternFactory = PatternFactory.getInstance();
+    public TypeDefiner(RISInstance instance){
+        PatternFactory patternFactory = new PatternFactory();
         patternsForType = patternFactory.getPatternsForType();
-        this.fields = fields;
-        if (!fields.isEmpty()) {
-            recordType = this.fields.get("TY").toLowerCase();
+        this.instance = instance;
+        if (!instance.getFields().isEmpty()) {
+            recordType = instance.getRecordType().toLowerCase();
             defineType();
         }
     }
@@ -26,7 +30,7 @@ public class TypeDefiner {
         // Поиск по паттернам
         for (Map.Entry<RecordType,Pattern> entry : patternsForType.entrySet()) {
             if (entry.getValue().matcher(recordType).find() ||
-                    entry.getValue().matcher(fields.get("T1").toLowerCase()).find()) {
+                    entry.getValue().matcher(instance.getTitle().toLowerCase()).find()) {
                 recordType =  entry.getKey().toString();
                 isChanged = true;
             }
@@ -35,12 +39,12 @@ public class TypeDefiner {
         //searchForSpecialCases ДОДЕЛАТЬ ДОДЕЛАТЬ ДОДЕЛАТЬ ДОДЕЛАТЬ ДОДЕЛАТЬ ДОДЕЛАТЬ ДОДЕЛАТЬ ДОДЕЛАТЬ ДОДЕЛАТЬ ДОДЕЛАТЬ ДОДЕЛАТЬ
 
         // Если есть поле "Периодическое издание", то тип записи определяется как "Статья в журнале"
-        if (fields.get("JA") != null) {
-            if (patternsForType.get(RecordType.MGZN).matcher(fields.get("JA").toLowerCase()).find()) {
+        if (!instance.getJournal().equals("")) {
+            if (patternsForType.get(RecordType.MGZN).matcher(instance.getJournal().toLowerCase()).find()) {
                 recordType = "MGZN";
                 return;
             }
-            if (!recordType.equals("MGZN")) fields.remove("journal");
+            if (!recordType.equals("MGZN")) instance.deleteJournal();
         }
         // Проверка на тип "Книга" по паттернам страниц:
         // если паттерн не "digit-digit", а является общим количеством страниц, то это книга

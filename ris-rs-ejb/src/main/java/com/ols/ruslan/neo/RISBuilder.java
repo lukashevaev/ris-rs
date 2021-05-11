@@ -8,12 +8,12 @@ import java.util.*;
  */
 public class RISBuilder {
 
-    private final Map<String, String> fields;
-    private final String recordType;
+    private String recordType;
+    RISInstance instance;
 
     public RISBuilder(Map<String, String> fields){
-        this.fields = fields;
-        TypeDefiner typeDefiner = new TypeDefiner(fields);
+        instance = new RISInstance(fields);
+        TypeDefiner typeDefiner = new TypeDefiner(instance);
         this.recordType = typeDefiner.getRecordType();
         refactorFields();
     }
@@ -58,8 +58,9 @@ public class RISBuilder {
 
 
         // Удаление "and" в конце поля "author"
-        String author = fields.get("author");
-        if (author != null) fields.put("author", author.substring(0, author.length() - 4));
+        String author = instance.getAuthor();
+        String[] authors = author.split("and");
+        if (authors.length > 1) instance.setAuthor(author.substring(0, author.length() - 4));
     }
 
     public String buildRIS(){
