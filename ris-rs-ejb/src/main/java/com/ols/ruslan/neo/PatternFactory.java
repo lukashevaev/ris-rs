@@ -286,4 +286,6 @@ public class PatternFactory {
         return patternsForType;
     }
 
+    public static final Pattern notEmptyFieldPattern = Pattern.compile("[a-zA-Zа-яА-Я0-9]");
+
 }

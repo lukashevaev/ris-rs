@@ -28,14 +28,6 @@ public class RISInstance {
         this.fields.put("TY", recordType);
     }
 
-    public String getTechreport() {
-        return fields.get("techreport");
-    }
-
-    public void setTechreport(String techreport) {
-        this.fields.put("techreport", techreport);
-    }
-
     public String getConference() {
         return fields.get("conference");
     }
@@ -46,7 +38,7 @@ public class RISInstance {
 
     public String getData() {
         return fields.get("data");
-    }
+    } //if Date - Y1
 
     public void setData(String data) {
         this.fields.put("data", data);
@@ -61,27 +53,27 @@ public class RISInstance {
     }
 
     public String getAuthor() {
-        return fields.get("author") != null ? fields.get("author") : "";
+        return fields.get("AU") != null ? fields.get("AU") : "";
     }
 
     public void setAuthor(String author) {
-        this.fields.put("author", author);
+        this.fields.put("AU", author);
     }
 
     public String getYear() {
-        return fields.get("year") != null ? fields.get("year") : "";
+        return fields.get("PY") != null ? fields.get("PY") : "";
     }
 
     public void setYear(String year) {
-        this.fields.put("year", year);
+        this.fields.put("PY", year);
     }
 
     public String getPublisher() {
-        return fields.get("publisher") != null ? fields.get("publisher") : "";
+        return fields.get("PB") != null ? fields.get("PB") : "";
     }
 
     public void setPublisher(String publisher) {
-        this.fields.put("publisher", publisher);
+        this.fields.put("PB", publisher);
     }
 
     public String getTitle() {
@@ -93,11 +85,11 @@ public class RISInstance {
     }
 
     public String getLanguage() {
-        return fields.get("language") != null ? fields.get("language") : "";
+        return fields.get("LA") != null ? fields.get("LA") : "";
     }
 
     public void setLanguage(String language) {
-        this.fields.put("language", language);
+        this.fields.put("LA", language);
     }
 
     public String getSchool() {
@@ -117,19 +109,19 @@ public class RISInstance {
     }
 
     public String getAddress() {
-        return fields.get("address") != null ? fields.get("address") : "";
+        return fields.get("PP") != null ? fields.get("PP") : "";
     }
 
     public void setAddress(String address) {
-        this.fields.put("address", address);
+        this.fields.put("PP", address);
     }
 
     public String getEdition() {
-        return fields.get("edition") != null ? fields.get("edition") : "";
+        return fields.get("ET") != null ? fields.get("ET") : "";
     }
 
     public void setEdition(String edition) {
-        this.fields.put("edition", edition);
+        this.fields.put("ET", edition);
     }
 
     public String getJournal() {
@@ -141,43 +133,51 @@ public class RISInstance {
     }
 
     public String getNumber() {
-        return fields.get("number") != null ? fields.get("number") : "";
+        return fields.get("M1") != null ? fields.get("M1") : "";
     }
 
     public void setNumber(String number) {
-        this.fields.put("number", number);
+        this.fields.put("M1", number);
     }
 
     public String getPages() {
-        return fields.get("pages") != null ? fields.get("pages") : "";
+        return fields.get("EP") != null ? fields.get("EP") : "";
     }
 
     public void setPages(String pages) {
-        this.fields.put("pages", pages);
+        this.fields.put("EP", pages);
     }
 
     public String getVolume() {
-        return fields.get("volume") != null ? fields.get("volume") : "";
+        return fields.get("VL") != null ? fields.get("VL") : "";
     }
 
     public void setVolume(String volume) {
-        this.fields.put("volume", volume);
+        this.fields.put("VL", volume);
+    }
+
+    public String getEditor() {
+        return fields.get("ED") != null ? fields.get("ED") : "";
+    }
+
+    public void setEditor(String volume) {
+        this.fields.put("ED", volume);
     }
 
     public void deleteYear() {
-        this.fields.remove("year");
+        this.fields.remove("PY");
     }
 
     public void deletePublisher() {
-        this.fields.remove("publisher");
+        this.fields.remove("PB");
     }
 
     public void deleteTitle() {
-        this.fields.remove("title");
+        this.fields.remove("T1");
     }
 
     public void deleteLanguage() {
-        this.fields.remove("language");
+        this.fields.remove("LA");
     }
 
     public void deleteSchool() {
@@ -189,11 +189,11 @@ public class RISInstance {
     }
 
     public void deleteAddress() {
-        this.fields.remove("address");
+        this.fields.remove("PP");
     }
 
     public void deleteEdition() {
-        this.fields.remove("edition");
+        this.fields.remove("ET");
     }
 
     public void deleteJournal() {
@@ -201,27 +201,23 @@ public class RISInstance {
     }
 
     public void deleteNumber() {
-        this.fields.remove("number");
+        this.fields.remove("M1");
     }
 
     public void deletePages() {
-        this.fields.remove("pages");
+        this.fields.remove("EP");
     }
 
     public void deleteVolume() {
-        this.fields.remove("volume");
+        this.fields.remove("VL");
     }
 
     public void deleteAuthor() {
-        this.fields.remove("author");
+        this.fields.remove("AU");
     }
 
     public void deleteRecordType() {
         this.fields.remove("recordType");
-    }
-
-    public void deleteTechreport() {
-        this.fields.remove("techreport");
     }
 
     public String getTitleChapter() {

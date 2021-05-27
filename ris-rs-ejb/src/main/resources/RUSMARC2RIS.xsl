@@ -224,6 +224,17 @@
                     <xsl:value-of select="field[@id='15']/subfield[@id='a']" />
                 </AN>
 
+                <ED>
+                    <xsl:choose>
+                        <xsl:when
+                                test="field[@id='200']/subfield[@id='f']">
+                            <xsl:value-of
+                                    select="field[@id='200']/subfield[@id='f']">
+                            </xsl:value-of>
+                        </xsl:when>
+                    </xsl:choose>
+                </ED>
+
 
                 <VL>
                     <xsl:choose>

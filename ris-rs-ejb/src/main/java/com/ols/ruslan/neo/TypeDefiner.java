@@ -48,7 +48,7 @@ public class TypeDefiner {
         }
         // Проверка на тип "Книга" по паттернам страниц:
         // если паттерн не "digit-digit", а является общим количеством страниц, то это книга
-        String pages = fields.get("EP") != null ? fields.get("EP").toLowerCase() : "";
+        String pages = instance.getPages();
         if (PatternFactory.pagePattern.matcher(pages).find()
                 & !PatternFactory.pagesPattern.matcher(pages).find()) {
             recordType = "BOOK";
