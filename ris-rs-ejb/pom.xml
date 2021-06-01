@@ -14,13 +14,13 @@
     <name>RIS Record Schema EJB module</name>
 
 
-    <repositories>
-        <repository>
-            <id>central</id>
-            <name>central-releases</name>
-            <url>http://repository.ruslan.ru/artifactory/libs-release-local</url>
-        </repository>
-    </repositories>
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>central</id>-->
+<!--            <name>central-releases</name>-->
+<!--            <url>http://repository.ruslan.ru/artifactory/libs-release-local</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
 
 
     <dependencies>

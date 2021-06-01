@@ -25,6 +25,10 @@ public class RISBuilder {
         return field.replaceAll("[^0-9-]", "");
     }
 
+    public String getDigits2(String field) {
+        return field.replaceAll("[^0-9]", "");
+    }
+
     // Метод для выделения цифр из поля
     public String replaceDigits(String field) {
         return field.replaceAll("[0-9]", "");
@@ -68,8 +72,7 @@ public class RISBuilder {
         instance.setNumber(getDigits(instance.getNumber()));
 
         // Выделяем цифры из поля Издание
-        instance.setEdition(getDigits(instance.getEdition()));
-
+        instance.setEdition(getDigits2(instance.getEdition()));
 
         // Удаление "and" в конце поля "author"
         /*String author = instance.getAuthor();

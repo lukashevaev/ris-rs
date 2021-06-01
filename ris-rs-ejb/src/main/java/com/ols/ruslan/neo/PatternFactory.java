@@ -28,7 +28,7 @@ public class PatternFactory {
                         ));
         patternsForType.put(RecordType.JOUR,
 
-                        Pattern.compile("журнал|journal|газета"));
+                        Pattern.compile("журнал|journal|газета|№|номер"));
 
         patternsForType.put(RecordType.THES,
 
