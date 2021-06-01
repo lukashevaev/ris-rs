@@ -9,22 +9,34 @@ import java.util.stream.Collectors;
  */
 public class RISBuilder {
 
-    private String recordType;
-    RISInstance instance;
+    private final String recordType;
+    private final RISInstance instance;
+    private final NavigableMap<String, String> authorFields = new TreeMap<>();
 
     public RISBuilder(Map<String, String> fields){
         instance = new RISInstance(fields);
         TypeDefiner typeDefiner = new TypeDefiner(instance);
-        this.recordType = typeDefiner.getRecordType();
+        this.recordType = typeDefiner.getRecordType().toUpperCase();
         refactorFields();
     }
+
     // Метод для выделения цифр из поля
     public String getDigits(String field) {
-        return field.replaceAll("[^0-9]", "");
+        return field.replaceAll("[^0-9-]", "");
     }
 
-    private boolean isExist(String fieldName){
-        return instance.getFields().get(fieldName) != null;
+    // Метод для выделения цифр из поля
+    public String replaceDigits(String field) {
+        return field.replaceAll("[0-9]", "");
+    }
+
+    private Integer getPosition(String[] array, String destination) {
+        for (int i = 0; i <= array.length; i++) {
+            if (Objects.equals(array[i], destination)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     // Изменение полей
@@ -53,16 +65,32 @@ public class RISBuilder {
         if (!PatternFactory.pagePattern.matcher(pages).find()) fields.remove("EP");
         else fields.put("EP", getDigits(fields.get("EP")));*/
         instance.setPages(getDigits(instance.getPages()));
+        instance.setNumber(getDigits(instance.getNumber()));
 
         // Выделяем цифры из поля Издание
         instance.setEdition(getDigits(instance.getEdition()));
 
 
         // Удаление "and" в конце поля "author"
-        String author = instance.getAuthor();
+        /*String author = instance.getAuthor();
         String[] authors = author.split("and");
         int lastAnd = author.lastIndexOf("and");
-        if (authors.length > 1) instance.setAuthor(author.substring(0, lastAnd));
+        if (authors.length > 1) instance.setAuthor(author.substring(0, lastAnd));*/
+
+        String[] authors = instance.getAuthor().split("/-/");
+        if (authors.length > 1) {
+            instance.getFields().remove("AU");
+            Arrays.stream(authors).forEach(author -> {
+                String[] authorParts = author.trim().split(" ");
+                String name = authorParts[0] + ", ";
+                StringBuilder authorBuilder = new StringBuilder();
+                authorBuilder.append(name);
+                Arrays.stream(authorParts).skip(1).forEach(str -> authorBuilder.append(str).append(" "));
+                String fieldName = String.format("AU%s", getPosition(authors, author) + 1);
+                authorFields.put(fieldName, authorBuilder.toString());
+            });
+        } else instance.setAuthor(instance.getAuthor().replace("/-/", ""));
+
 
         //Удаляем пустые поля
         instance.setFields(
@@ -72,21 +100,16 @@ public class RISBuilder {
                         .filter(entry -> entry.getValue() != null && !entry.getValue().equals("") && PatternFactory.notEmptyFieldPattern.matcher(entry.getValue()).find())
                         .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue , (a, b) -> a, LinkedHashMap::new)));
 
+        instance.deleteRecordType();
     }
 
     public String buildRIS(){
         StringBuilder risText = new StringBuilder();
-        risText.append("TY-")
-                .append(recordType)
-                .append("\n");
-        for (Map.Entry<String, String> entry : instance.getFields().entrySet()) {
-            String field = entry.getValue();
-            String parameter = entry.getKey();
-            if (field != null) risText.append(parameter)
-                    .append("-")
-                    .append(field)
-                    .append("\n");
-        }
+        risText.append(String.format("TY-%s\n", recordType));
+        authorFields.forEach((key, value) -> risText.append(String.format("%s-%s\n", replaceDigits(key), value)));
+
+        instance.getFields().forEach((key, value) -> risText.append(String.format("%s-%s\n", key, value)));
+
         // Добавление последнего обзательного тэга
         return risText.append("ER-").toString();
     }

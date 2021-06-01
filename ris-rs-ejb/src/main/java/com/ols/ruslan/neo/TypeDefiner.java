@@ -1,9 +1,6 @@
 package com.ols.ruslan.neo;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -44,7 +41,6 @@ public class TypeDefiner {
                 recordType = "MGZN";
                 return;
             }
-            if (!recordType.equals("MGZN")) instance.deleteJournal();
         }
         // Проверка на тип "Книга" по паттернам страниц:
         // если паттерн не "digit-digit", а является общим количеством страниц, то это книга
@@ -52,6 +48,7 @@ public class TypeDefiner {
         if (PatternFactory.pagePattern.matcher(pages).find()
                 & !PatternFactory.pagesPattern.matcher(pages).find()) {
             recordType = "BOOK";
+            return;
         }
 
         /*//check books-group
@@ -61,7 +58,7 @@ public class TypeDefiner {
             }
         }*/
 
-        if(!isChanged) recordType = "UNPB";
+        if(!isChanged && (recordType == null || "".equals(recordType))) recordType = "UNPB";
     }
 
     public String getRecordType(){

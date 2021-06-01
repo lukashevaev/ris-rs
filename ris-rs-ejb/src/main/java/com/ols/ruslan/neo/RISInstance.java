@@ -10,6 +10,7 @@ public class RISInstance {
 
     public RISInstance(Map<String, String> fields) {
         this.fields = fields;
+        setJournal(prepareJournal());
     }
 
     public Map<String, String> getFields() {
@@ -128,6 +129,20 @@ public class RISInstance {
         return fields.get("JA") != null ? fields.get("JA") : "";
     }
 
+    public String prepareJournal() {
+        StringBuilder journal = new StringBuilder();
+        if (fields.get("JA") != null && !fields.get("JA").equals("")) journal.append(fields.get("JA"));
+        if (fields.get("journal_description") != null && PatternFactory.journalPattern.matcher(fields.get("journal_description").toLowerCase()).find()) {
+            if (journal.length() > 0) {
+                journal.append(", ");
+            }
+            journal.append(fields.get("journal_description"));
+            fields.remove("journal_description");
+            this.setRecordType("JOUR");
+        }
+        return journal.toString();
+    }
+
     public void setJournal(String journal) {
         this.fields.put("JA", journal);
     }
@@ -217,7 +232,7 @@ public class RISInstance {
     }
 
     public void deleteRecordType() {
-        this.fields.remove("recordType");
+        this.fields.remove("TY");
     }
 
     public String getTitleChapter() {
